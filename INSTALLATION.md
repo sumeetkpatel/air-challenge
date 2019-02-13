@@ -273,5 +273,5 @@ $ pm2 logs
 ```
 ## API Links for reference
 > https://openweathermap.org/api
-
-> https://opensky-network.org/apidoc/
+> https://www.flightradar24.com/
+> https://github.com/derhuerst/flightradar24-client/blob/master/lib/radar.js
