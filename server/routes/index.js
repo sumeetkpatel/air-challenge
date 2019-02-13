@@ -131,7 +131,7 @@ router.get('/aircraft/:latlngString/:distanceKms?', function(req, res, next) {
 				}
 
 				//Double check the radius
-				//For some reasont the API returns planes a bit further out
+				//For some reason the API returns planes a bit further out
 				//This should also make things more circular rather than a box
 				var radFrom = turf.point([longitude, latitude]);
 				var radTo = turf.point([flight.longitude, flight.latitude]);
