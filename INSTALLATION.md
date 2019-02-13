@@ -194,7 +194,7 @@ server {
 
         server_name <domain>;
 
-		#SSL parameters
+	#SSL parameters
         ssl_certificate /etc/letsencrypt/live/<domain>/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/<domain>/privkey.pem;
         ssl_dhparam /etc/ssl/certs/dhparam.pem;
@@ -216,19 +216,19 @@ server {
         add_header X-Frame-Options DENY;
         add_header X-Content-Type-Options nosniff;
 
-		#Proxy /api to the back-end express app
+	#Proxy /api to the back-end express app
         location /api/ {
                 proxy_set_header X-Forwarded-For $remote_addr;
                 proxy_set_header Host $http_host;
                 proxy_pass "http://127.0.0.1:3001/";
         }
 
-		#Allow lets-encrypt validations
+	#Allow lets-encrypt validations
         location ~ /.well-known {
                 allow all;
         }
 
-		#Proxy react socket connections for the react front-end
+	#Proxy react socket connections for the react front-end
         location /sockjs-node {
                 proxy_pass http://127.0.0.1:3000;
                 proxy_http_version 1.1;
@@ -236,7 +236,7 @@ server {
                 proxy_set_header Connection "upgrade";
         }
 
-		#Proxy react front end
+	#Proxy react front end
         location / {
                 proxy_set_header X-Forwarded-For $remote_addr;
                 proxy_set_header Host $http_host;
