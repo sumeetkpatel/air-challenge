@@ -85,7 +85,7 @@ router.get('/weather/current/:latlngString', function(req, res, next) {
 });
 
 //Gets Aircraft details within a radius of a given gps coordinate
-// eg. aircraft/-33.8888144,151.1226362/5
+// eg. /aircraft/-33.8888144,151.1226362/5
 router.get('/aircraft/:latlngString/:distanceKms?', function(req, res, next) {
 	var latLngStringArray = req.params.latlngString.split(',');
 	var latitude = latLngStringArray[0];
@@ -197,30 +197,6 @@ function getNWSEBoundingBox(latitude, longitude, radiusKms){
 
 	return result;
 }
-
-/*
-function getNWSEBoundingBox(latitude, longitude, radiusKms){
-	//1km in degrees at equator (not accurate)
-	var adjust = 0.0089982311915998;
-
-	//ratio for longitude size
-	var lngRatio = 1 / Math.cos(Math.radians(latitude)); 
-
-	var north = latitude + (radiusKms * adjust);
-	var south = latitude - (radiusKms * adjust);
-	var east = longitude - (radiusKms * adjust) * lngRatio;
-	var west = longitude + (radiusKms * adjust) * lngRatio;
-
-	var result = {
-		north: parseFloat(north),
-		south: parseFloat(south),
-		east: parseFloat(east),
-		west: parseFloat(west)
-	};
-
-	return result;
-}
-*/
 
 //Format decimal lat lng into a string
 function getLatitudeAndLongitudeString(latitude, longitude){
