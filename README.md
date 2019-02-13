@@ -2,7 +2,7 @@
 
 # air-challenge
 
-A typical programming challenge given to developers by a local Australian startup.
+A typical programming challenge given to developers involving a back-end and front-end to track flight and weather conditions.
 
 See [Installation Guide](/INSTALLATION.md) for setup/configuration.
 
