@@ -27,6 +27,8 @@ Allow for the retrieval of historical data
 4. Bonus: Given an input of an aircraft, calculate the distance travelled based on historical data captured.
 
 Please add this to your git account and let us know the details.
+
+Time allowed: 24hrs
 ```
 
 ## FAQ
