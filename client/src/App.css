@@ -1,0 +1,77 @@
+.App {
+	margin-top: 20px;
+	text-align: center;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.map-container {
+	position: relative;
+}
+
+.panel-container {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.8);
+	z-index: 999;
+	min-width: 300px;
+}
+
+.time-container {
+}
+
+.location-container .location {
+	/*text-align: left;*/
+}
+
+.weather-container img {
+	width: 125px;
+}
+
+.weather-container .media-body {
+	text-align: left;
+}
+
+.json {
+	min-width: 260px;
+	text-align: left;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.tooltip-inner {
+	max-width: 100% !important;
+}
+
+.tooltip .json {
+	color: whitesmoke;
+}
+
+.leaflet-container {
+    min-height: 800px;
+    height: 60vh;
+    margin: auto;
+}
+
+.leaflet-popup-content {
+	min-width: 300px;
+}
+
+.aircraft-container,
+.shortcuts-container {
+	margin: 20px;
+}
+
+.aircraft-container .aircraft {
+	margin: 5px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.shortcuts-container button {
+	margin: 5px;
+	/*display: inline-block;*/
+}
+
