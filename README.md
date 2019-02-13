@@ -6,6 +6,9 @@ A typical programming challenge given to developers by a local Australian startu
 
 See [Installation Guide](/INSTALLATION.md) for setup/configuration.
 
+## Screenshot
+![Screenshot](/screenshot.png "Screenshot")
+
 ## Challenge requirements
 ```text
 What we'd like to see is a node express REST API that:
