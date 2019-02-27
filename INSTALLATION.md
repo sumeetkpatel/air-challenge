@@ -190,11 +190,15 @@ My example configuration:
 ```
 server {
         listen 80;
-        listen 443 ssl;
+        server_name <domain>;
+        return 301 https://$host$request_uri;
+}
 
+server {
+        listen 443 ssl;
         server_name <domain>;
 
-		#SSL parameters
+        #SSL parameters
         ssl_certificate /etc/letsencrypt/live/<domain>/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/<domain>/privkey.pem;
         ssl_dhparam /etc/ssl/certs/dhparam.pem;
