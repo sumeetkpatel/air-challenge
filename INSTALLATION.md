@@ -177,7 +177,7 @@ $ sudo useradd --no-create-home nginx
 ```
 Add LetsEncrypt/Certbot to generate certificates
 ```console
-$ echo 'deb http://ftp.debian.org/debian jessie-backports main' | sudo tee /etc/apt/sources.list.d/backports.list
+$ sudo echo 'deb http://ftp.debian.org/debian jessie-backports main' | sudo tee /etc/apt/sources.list.d/backports.list
 $ sudo apt-get update
 $ sudo apt-get install certbot -t jessie-backports
 ```
@@ -220,19 +220,19 @@ server {
         add_header X-Frame-Options DENY;
         add_header X-Content-Type-Options nosniff;
 
-		#Proxy /api to the back-end express app
+	#Proxy /api to the back-end express app
         location /api/ {
                 proxy_set_header X-Forwarded-For $remote_addr;
                 proxy_set_header Host $http_host;
                 proxy_pass "http://127.0.0.1:3001/";
         }
 
-		#Allow lets-encrypt validations
+	#Allow lets-encrypt validations
         location ~ /.well-known {
                 allow all;
         }
 
-		#Proxy react socket connections for the react front-end
+	#Proxy react socket connections for the react front-end
         location /sockjs-node {
                 proxy_pass http://127.0.0.1:3000;
                 proxy_http_version 1.1;
@@ -240,7 +240,7 @@ server {
                 proxy_set_header Connection "upgrade";
         }
 
-		#Proxy react front end
+	#Proxy react front end
         location / {
                 proxy_set_header X-Forwarded-For $remote_addr;
                 proxy_set_header Host $http_host;
@@ -257,7 +257,7 @@ $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 Start the proxy
 ```console
-$ /etc/init.d/nginx start
+$ sudo /etc/init.d/nginx start
 ```
 
 ## Bring up the back end and front end
@@ -275,6 +275,16 @@ $ pm2 start ecosystem.config.js
 $ pm2 status
 $ pm2 logs
 ```
+
+## Make Startup scripts
+```console
+$ pm2 startup
+$ pm2 save
+```
+
+> Execute startup commands as requested
+
 ## API Links for reference
 > https://openweathermap.org/api
-> https://opensky-network.org/apidoc/
+> https://www.flightradar24.com/
+> https://github.com/derhuerst/flightradar24-client/blob/master/lib/radar.js
