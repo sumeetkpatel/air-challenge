@@ -254,7 +254,7 @@ server {
 
 Generate the Diffie-Hellman params and SSL Certificates using LetsEncrypt
 ```
-$ sudo certbot certonly -a webroot --webroot-path=/var/www/html -d <domain>
+$ sudo certbot certonly -a webroot --webroot-path=/var/www/html -d <domain> --renew-hook "/etc/init.d/nginx restart"
 $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
 
@@ -271,7 +271,7 @@ $ chmod +x ~/letsencrypt-renew.sh
 Script contents: <letsencrypt-renew.sh>
 ```
 #!/bin/bash
-/usr/bin/certbot renew --renew-hook "/etc/init.d/nginx restart"
+/usr/bin/certbot renew
 ```
 
 Add the job, which will run at noon and midnight every day
