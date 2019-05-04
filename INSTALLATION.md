@@ -5,6 +5,8 @@ Firewalling and VPN tasks are left out as protection is unnecessary for the purp
 
 SSL setup was included as auto-detecting user current location API in chrome requires Secure HTTP.
 
+Instructions are intended for Debian 8 (Jessie)
+
 ## Setup
 Spin up instance w/SSH keys on Cloud or VM, or just use your local machine
 
@@ -230,6 +232,7 @@ server {
 	#Allow lets-encrypt validations
         location ~ /.well-known {
                 allow all;
+		root /var/www/html;
         }
 
 	#Proxy react socket connections for the react front-end
@@ -253,6 +256,28 @@ Generate the Diffie-Hellman params and SSL Certificates using LetsEncrypt
 ```
 $ sudo certbot certonly -a webroot --webroot-path=/var/www/html -d <domain>
 $ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+```
+
+Setup certbot with cron to auto-renew the certificates and save it
+```
+$ sudo crontab -e
+```
+Add a script to renew the certificates, and make it executable
+```
+$ touch ~/letsencrypt-renew.sh
+$ chmod +x ~/letsencrypt-renew.sh
+```
+
+Script contents: <letsencrypt-renew.sh>
+```
+#!/bin/bash
+/usr/bin/certbot renew
+/etc/init.d/nginx restart
+```
+
+Add the job, which will run at noon and midnight every day
+```
+0 0,12 * * * python -c 'import random; import time; time.sleep(random.random() * 3600)' && /home/admin/letsencrypt-renew.sh
 ```
 
 Start the proxy
